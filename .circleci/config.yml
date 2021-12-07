@@ -7,8 +7,8 @@ jobs:
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
         auth:
-          username: yejman1
-          password: yejman2907  # context / project UI env-var reference
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - restore_cache:
@@ -58,9 +58,9 @@ jobs:
           name: Pushing to heroku registry
           command: |
             heroku container:login
-            #heroku ps:scale web=1 -a app-circle
-            heroku container:push web -a app-circle
-            heroku container:release web -a app-circle
+            #heroku ps:scale web=1 -a $HEROKU_APP_NAME
+            heroku container:push web -a $HEROKU_APP_NAME
+            heroku container:release web -a $HEROKU_APP_NAME
 
 workflows:
   build-test-deploy:
