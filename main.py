@@ -23,7 +23,7 @@ CORS(app)
 @app.route("/", methods=['GET'])
 @cross_origin()
 def home():
-    return "Hello app" #render_template('index.html')
+    return "Hello app! I am changed" #render_template('index.html')
 
 """
 @app.route("/predict", methods=['POST'])
